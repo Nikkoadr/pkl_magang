@@ -1,0 +1,115 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Dudi;
+use App\Models\User;
+use App\Models\Peserta;
+use App\Models\Peserta_pkl;
+use App\Models\Kompetensi_keahlian;
+
+class AutoCompleteController extends Controller
+{
+    public function autoCompleteDudi(Request $request)
+    {
+        $term = $request->get('term');
+        $dudi = Dudi::where('nama_dudi', 'like', '%' . $term . '%')->get();
+        $results = $dudi->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'label' => $item->nama_dudi,
+                'alamat' => $item->alamat_dudi,
+                'pimpinan' => $item->nama_pimpinan_dudi,
+            ];
+        });
+        return response()->json($results);
+    }
+
+    public function autoCompleteUser(Request $request)
+    {
+        $term = $request->get('term');
+
+        $excludeIds = array_merge(
+            Peserta::pluck('user_id')->toArray()
+        );
+
+        $users = User::whereNotIn('id', $excludeIds)
+            ->where('nama', 'like', '%' . $term . '%')
+            ->get();
+
+        $results = $users->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'label' => $user->nama,
+            ];
+        });
+
+        return response()->json($results);
+    }
+
+    public function autoCompletePeserta(Request $request)
+    {
+        $term = $request->get('term');
+        $tahunAktif = tahunAktif();
+
+        $peserta = Peserta::with('user')
+            ->where('tahun_ajaran_id', $tahunAktif->id)
+            ->whereHas('user', function ($query) use ($term) {
+                $query->where('nama', 'like', '%' . $term . '%');
+            })
+            ->get();
+
+        $results = $peserta->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'label' => $item->user->nama,
+            ];
+        });
+
+        return response()->json($results);
+    }
+
+    public function autoCompletePesertaPKL(Request $request)
+    {
+        $term = $request->get('term');
+        $tahunAktif = tahunAktif();
+
+        $pesertaPKL = Peserta_pkl::with(['peserta.user'])
+            ->whereHas('peserta', function ($q) use ($term, $tahunAktif) {
+                $q->where('tahun_ajaran_id', $tahunAktif->id)
+                    ->whereHas('user', function ($query) use ($term) {
+                        $query->where('nama', 'like', '%' . $term . '%');
+                    });
+            })
+            ->get();
+
+        $results = $pesertaPKL->map(function ($item) {
+            return [
+                'label' => $item->peserta->user->nama ?? '-',
+                'value' => $item->peserta->user->nama ?? '',
+                'peserta_pkl_id' => $item->id,
+            ];
+        });
+
+        return response()->json($results);
+    }
+
+    public function autoCompleteKompetensi(Request $request)
+    {
+        $term = $request->get('term');
+        $kompetensi = Kompetensi_keahlian::where('nama_kompetensi', 'like', "%$term%")
+            ->limit(10)
+            ->get(['id', 'nama_kompetensi']);
+
+        $data = [];
+        foreach ($kompetensi as $item) {
+            $data[] = [
+                'id' => $item->id,
+                'label' => $item->nama_kompetensi,
+                'value' => $item->nama_kompetensi,
+            ];
+        }
+        return response()->json($data);
+    }
+}

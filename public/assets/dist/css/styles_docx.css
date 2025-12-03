@@ -1,0 +1,138 @@
+body {
+    font-family: "Times New Roman", serif;
+    margin: 0;
+    padding: 0;
+    background: #ddd;
+    color: #000;
+}
+
+.page {
+    width: 210mm;
+    height: 297mm;
+    background: white;
+    margin: 20px auto;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    page-break-after: always;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.page:last-child {
+    page-break-after: always;
+}
+
+.kop table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.kop td {
+    padding: 2px;
+}
+
+.kop img {
+    height: 85px;
+}
+
+.line {
+    border-top: 2.5px solid black;
+    margin: 8px 0 20px;
+}
+
+.meta {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.meta table td {
+    vertical-align: top;
+    padding: 2px 5px;
+}
+
+.indent {
+    text-indent: 50px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.signature-section {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap !important;
+    text-align: center;
+}
+
+.signature {
+    width: 30%;
+}
+
+.signature.center {
+    width: 35%;
+    margin-top: 100px;
+}
+.signature-date {
+    white-space: nowrap;
+    display: inline-block;
+}
+.form-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.form-subtitle {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.form-table td {
+    padding: 6px;
+    vertical-align: top;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+@media print {
+    body {
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        page-break-after: always;
+    }
+    .page:last-child {
+        page-break-after: auto;
+    }
+    a {
+        color: black;
+        text-decoration: none;
+    }
+    .signature-date {
+        white-space: nowrap;
+        line-height: 1.1;
+    }
+}
