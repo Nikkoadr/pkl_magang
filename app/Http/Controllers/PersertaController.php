@@ -11,7 +11,6 @@ use App\Models\Tahun_ajaran;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Kaprodi;
 use App\Jobs\ImportPesertaJob;
 use App\Models\Dudi;
 

@@ -4,9 +4,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 @endsection
 @section('content')
-<!-- Content Wrapper -->
 <div class="content-wrapper">
-    <!-- Header -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -22,12 +20,9 @@
             </div>
         </div>
     </section>
-
-    <!-- Main Content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- Info Box Jumlah DUDI -->
                 <div class="col-lg-6 col-12">
                     <div class="info-box shadow-sm">
                         <span class="info-box-icon bg-info"><i class="fas fa-building"></i></span>
@@ -37,7 +32,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Info Box Jumlah Peserta -->
                 <div class="col-lg-6 col-12">
                     <div class="info-box shadow-sm">
                         <span class="info-box-icon bg-success"><i class="fas fa-users"></i></span>
@@ -48,8 +42,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Grafik Statistik -->
             <div class="row">
                 <div class="col-12">
                     <div class="card shadow">
@@ -62,8 +54,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Statistik Per Kompetensi Keahlian -->
             <div class="row">
                 <div class="col-12">
                     <div class="card shadow">
@@ -105,7 +95,6 @@
                     </div>
                 </div>
             </div>
-            <!-- End Statistik -->
         </div>
     </section>
 </div>
@@ -115,7 +104,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Chart.js untuk menampilkan grafik per kompetensi
     const ctx = document.getElementById('kompetensiChart').getContext('2d');
     const kompetensiChart = new Chart(ctx, {
         type: 'bar',
@@ -146,7 +134,6 @@
         }
     });
 
-    // SweetAlert
     @if (session('success'))
         Swal.fire({
             toast: true,
@@ -167,19 +154,6 @@
             title: '{{ session('error') }}',
             showConfirmButton: false,
             timer: 3000,
-            timerProgressBar: true
-        });
-    @endif
-
-    @if ($errors->any())
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'error',
-            title: 'Terdapat {{ $errors->count() }} kesalahan validasi.',
-            html: `{!! implode('<br>', $errors->all()) !!}`,
-            showConfirmButton: true,
-            confirmButtonText: 'Tutup',
             timerProgressBar: true
         });
     @endif

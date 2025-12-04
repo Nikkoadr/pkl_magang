@@ -13,19 +13,11 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- AdminLTE -->
     <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
-    <!-- jQuery UI (autocomplete) -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <style>
-        /* Minor cosmetic adjustments for a fresh, minimal look */
-        .register-card-body { padding: 2rem; }
         .brand-head img { width: 64px; height: auto; }
-        .form-section { background: #ffffff; border-radius: 12px; padding: 1.25rem; box-shadow: 0 6px 18px rgba(15,23,42,0.06); }
-        label { font-weight: 600; font-size: 0.95rem; }
-        .required::after { content: " *"; color: #e3342f; }
-        .ui-autocomplete { max-height: 220px; overflow-y: auto; overflow-x: hidden; }
         @media (max-width: 767px) { .brand-head { text-align: center; } }
     </style>
 </head>
@@ -170,7 +162,6 @@
 <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 
 <script>

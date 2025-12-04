@@ -100,19 +100,6 @@
             timerProgressBar: true
         });
     @endif
-
-    @if ($errors->any())
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'error',
-            title: 'Terdapat {{ $errors->count() }} kesalahan validasi.',
-            html: `{!! implode('<br>', $errors->all()) !!}`,
-            showConfirmButton: true,
-            confirmButtonText: 'Tutup',
-            timerProgressBar: true
-        });
-    @endif
 </script>
 @endsection
 

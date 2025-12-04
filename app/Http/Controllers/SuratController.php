@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Dudi;
 use App\Models\Peserta;
 use App\Models\Pengaturan;
-use App\Models\Kaprodi;
-use App\Models\Guru;
-use App\Models\Guru_pembimbing;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Auth;
 
 class SuratController extends Controller
 {
