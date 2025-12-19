@@ -31,4 +31,11 @@ class Peserta extends Model
     {
         return $this->belongsTo(Dudi::class);
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($peserta) {
+            $peserta->user()->delete();
+        });
+    }
 }
