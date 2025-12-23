@@ -15,7 +15,6 @@ class Peserta_pklImport implements ToModel, WithHeadingRow
         $peserta = Peserta::whereHas('user', function ($q) use ($row) {
             $q->where('nama', $row['nama_peserta']);
         })->first();
-
         $dudi = Dudi::where('nama_dudi', $row['nama_dudi'])->first();
 
         if (!$peserta || !$dudi) {

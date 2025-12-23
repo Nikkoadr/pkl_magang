@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DudiController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersertaController;
 use App\Http\Controllers\PesertaPklController;
 use App\Http\Controllers\SuratController;
@@ -43,7 +42,6 @@ Route::post('/home/peserta/store_request_dudi', [PersertaController::class, 'sto
 // Master Data
 Route::resource('/home/tahun_ajaran', Tahun_ajaranController::class);
 Route::resource('/home/kelas', KelasController::class);
-Route::resource('/home/users', UserController::class);
 Route::resource('/home/dudi', DudiController::class);
 Route::resource('/home/peserta', PersertaController::class);
 Route::resource('/home/peserta_pkl', PesertaPklController::class);
@@ -53,10 +51,6 @@ Route::post('/home/peserta_pkl/import', [PesertaPklController::class, 'import'])
 // Import Data
 Route::post('/home/import_dudi', [DudiController::class, 'import'])->name('dudi.import');
 Route::post('/home/import_peserta', [PersertaController::class, 'import'])->name('peserta.import');
-
-// User Management
-Route::post('/home/users/delete-multiple', [UserController::class, 'deleteMultiple'])->name('users.deleteMultiple');
-Route::put('/home/users/{id}/reset-password', [UserController::class, 'resetPassword'])->name('users.resetPassword');
 
 // Surat / Dokumen
 Route::get('/home/surat', [SuratController::class, 'index'])->name('home.surat');
